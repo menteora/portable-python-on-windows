@@ -1,0 +1,12 @@
+{
+  "MAIN_TASK": {
+    "EXEC": "custom_command",
+    "SUCCESS": "SECOND_TASK",
+    "FAILURE": "END_TASK"
+  },
+  "SECOND_TASK": {
+    "EXEC": "another_command",
+    "SUCCESS": "END_TASK",
+    "FAILURE": "END_TASK"
+  }
+}
