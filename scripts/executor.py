@@ -13,14 +13,8 @@ fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 
 logger = import_library(fileDir, "logger")
-# mailer = import_library(fileDir, "mailer")
 
-# mailer.send_email_gmail("xxx","xxx")
-# logging.basicConfig(filename=parentDir + '\logs\executor.log',level=logging.DEBUG)
 log = logger.setup('executor', parentDir)
-# log.debug('This message should go to the log file')
-# log.info('So should this')
-# log.warning('And this, too')
 
 with open(fileDir + '\executor.config.json', 'r') as f:
     config = json.load(f)
