@@ -3,15 +3,18 @@ import json
 import subprocess
 import importlib.util
 
+def import_library(dir, name):
+    spec = importlib.util.spec_from_file_location(name, fileDir + "/" + name +".py")
+    library = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(library)
+    return library
+
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 
-spec = importlib.util.spec_from_file_location("logger", fileDir + "/logger.py")
-logger = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(logger)
-
+logger = import_library(fileDir, "logger")
 # logging.basicConfig(filename=parentDir + '\logs\executor.log',level=logging.DEBUG)
-log = logger.setup('myapp', parentDir)
+log = logger.setup('executor', parentDir)
 log.debug('This message should go to the log file')
 log.info('So should this')
 log.warning('And this, too')
