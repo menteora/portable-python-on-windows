@@ -13,9 +13,6 @@ def send_email_gmail():
     logPath = os.path.join(parentDir, 'logs') 
     log_files = os.listdir(logPath)
 
-    for index, log_file in enumerate(log_files):
-        log_files[index] = logPath + "\\" + log_file
-
 
     with open(fileDir + '\mailer.config.json', 'r') as f:
         config = json.load(f)
@@ -36,16 +33,18 @@ def send_email_gmail():
  
     msg.attach(MIMEText(body, 'plain'))
  
-    filename = "executor.log"
-    attachment = open("logs\\" + filename, "rb")
- 
-    part = MIMEBase('application', 'octet-stream')
-    part.set_payload((attachment).read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
- 
-    msg.attach(part)
+    for index, log_file in enumerate(log_files):
 
+        if log_file != "README.md":
+            filename = log_file
+            attachment = open(logPath + "\\" + filename, "rb")
+    
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload((attachment).read())
+            encoders.encode_base64(part)
+            part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+        
+            msg.attach(part)
 
     try:  
         server = smtplib.SMTP('smtp.gmail.com', 587)
