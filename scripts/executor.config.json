@@ -1,13 +1,13 @@
 {
   "MAIN_TASK": {
-    "EXEC": "notepad.exe",
-    "SUCCESS": "task_name",
-    "FAILURE": "task_name"
+    "EXEC": "..\\multimonitortool\\MultiMonitorTool.exe /stext ..\\..\\logs\\multimonitor.log",
+    "SUCCESS": "SECOND_TASK",
+    "FAILURE": "END_TASK"
   },
-  "task_name": {
-    "EXEC": "script_name",
-    "SUCCESS": "task_name",
-    "FAILURE": "task_name"
+  "SECOND_TASK": {
+    "EXEC": "..\\multimonitortool\\MultiMonitorTool.exe /stext ..\\..\\logs\\multimonitor2.log",
+    "SUCCESS": "END_TASK",
+    "FAILURE": "END_TASK"
   },
   "task_name_2": {
     "EXEC": "script_name",

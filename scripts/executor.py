@@ -13,22 +13,32 @@ fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 
 logger = import_library(fileDir, "logger")
+# mailer = import_library(fileDir, "mailer")
+
+# mailer.send_email_gmail("xxx","xxx")
 # logging.basicConfig(filename=parentDir + '\logs\executor.log',level=logging.DEBUG)
 log = logger.setup('executor', parentDir)
-log.debug('This message should go to the log file')
-log.info('So should this')
-log.warning('And this, too')
+# log.debug('This message should go to the log file')
+# log.info('So should this')
+# log.warning('And this, too')
 
 with open(fileDir + '\executor.config.json', 'r') as f:
     config = json.load(f)
 
-main_task = config['MAIN_TASK']['EXEC'] 
-print(main_task)
-return_code = subprocess.run(main_task).returncode
-print(return_code)
+current_task = "MAIN_TASK"
+
+while current_task != "END_TASK":
+    main_task = config[current_task]['EXEC']
+    log.info(main_task)
+    return_code = subprocess.run(main_task).returncode
+    log.debug(return_code)
+    if return_code == 0:
+        current_task = config[current_task]['SUCCESS'] 
+    else:
+        current_task = config[current_task]['FAILURE'] 
 
 
-input("Press enter to continue...")
+#input("Press enter to continue...")
 
 '''
 absFilePath = os.path.abspath(__file__)                # Absolute Path of the module
