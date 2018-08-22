@@ -1,2 +1,2 @@
-cd python
-python.exe ..\isakk\windows\executor.py
+cd bin\python
+python.exe ..\..\scripts\executor.py
