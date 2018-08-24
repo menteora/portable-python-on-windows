@@ -2,6 +2,6 @@ scripts/__pycache__
 logs/*.log
 logs/*.txt
 bin/*
-!bin/*/README.md
+!bin/python/README.md
 executor.config.json
 mailer.config.json
