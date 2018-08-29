@@ -26,7 +26,15 @@ print(current_dir)
 update_dir = os.path.join(current_dir, 'isakk')
 print(update_dir)
 
-update_files = os.listdir(update_dir)
+print(os.listdir(update_dir))
 
-for f in files:
-    shutil.move(update_files+f, update_dir)
+#import commands
+upgrade_file=open("upgrade.bat", "w")
+upgrade_file.write('XCOPY /E /Y \"' + update_dir +'\\*\" \"' + current_dir +'\" \n')
+upgrade_file.write('DEL /f /s /q \"'+ update_dir + '\" \n')
+upgrade_file.write('RMDIR /S /Q \"' + update_dir+' \n')
+upgrade_file.close()
+#commands.getstatusoutput(delfile.bat)#Executes the file
+
+#for f in update_files:
+#    shutil.move(update_dir, current_dir)

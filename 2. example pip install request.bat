@@ -1,2 +1,2 @@
-bin\python\Scripts\pip install requests
+bin\python\python -m pip install requests
 pause
