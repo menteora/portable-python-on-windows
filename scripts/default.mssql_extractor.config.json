@@ -1,0 +1,9 @@
+{
+  "authentication": {
+    "user": "",
+    "password": "",
+    "host": "",
+    "database": "",
+    "query": ""
+  }
+}

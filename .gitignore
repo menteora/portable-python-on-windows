@@ -5,3 +5,4 @@ bin/*
 !bin/python/README.md
 executor.config.json
 mailer.config.json
+mssql_extractor.config.json
