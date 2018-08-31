@@ -16,6 +16,7 @@ host = config['authentication']['host']
 database = config['authentication']['database']
 query = config['authentication']['query']
 filename = config['excel']['file_name']
+sheetname = config['excel']['sheet_name']
 
 conn_str = 'mssql+pymssql://'+user+':'+password+'@'+host+'/'+database
 engine = create_engine(conn_str)
@@ -31,11 +32,11 @@ writer = pd.ExcelWriter(filename, engine='xlsxwriter')
 #sf = StyleFrame(df)
 #sf.to_excel(excel_writer=writer)
 
-df.to_excel(writer, index=False, sheet_name='report')
+df.to_excel(writer, index=False, sheet_name=sheetname)
 
 #Indicate workbook and worksheet for formatting
 workbook = writer.book
-worksheet = writer.sheets['report']
+worksheet = writer.sheets[sheetname]
 
 #Iterate through each column and set the width == the max length in that column. A padding length of 2 is also added.
 for i, col in enumerate(df.columns):
