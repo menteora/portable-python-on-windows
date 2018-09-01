@@ -4,7 +4,7 @@ import subprocess
 import importlib.util
 
 def import_library(dir, name):
-    spec = importlib.util.spec_from_file_location(name, fileDir + "/" + name +".py")
+    spec = importlib.util.spec_from_file_location(name, dir + "/" + name +".py")
     library = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(library)
     return library

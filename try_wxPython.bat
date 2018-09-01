@@ -1,2 +1,2 @@
-bin\python\python.exe scripts\wxPython.py
+bin\python\python.exe scripts\set_motorola_code.py
 pause
