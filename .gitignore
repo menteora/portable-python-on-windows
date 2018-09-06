@@ -1,8 +1,12 @@
 scripts/__pycache__
+core/__pycache__
 logs/*.log
 logs/*.txt
+logs/*.xlsx
+logs/*.xls
 bin/*
 !bin/python/README.md
 executor.config.json
 mailer.config.json
 mssql_extractor.config.json
+.vscode
