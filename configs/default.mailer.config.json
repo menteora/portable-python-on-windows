@@ -1,7 +1,0 @@
-{
-  "authentication": {
-    "user": "user",
-    "password": "password",
-    "to": ["receiver1@gmail.com", "receiver2@gmail.com"]
-  }
-}

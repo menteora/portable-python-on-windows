@@ -6,7 +6,7 @@ from pathlib import Path
 
 class PathHelper:
     def getConfigPath():
-        return PathHelper.__getDirectoryFromParentPath('configs')
+        return PathHelper.__getDirectoryFromAppsPath('configs')
 
     def getConfigJson(name):
         config_file = os.path.join(PathHelper.getConfigPath(), name + ".config.json")
@@ -16,8 +16,8 @@ class PathHelper:
                 config = json.load(f)
         return config
 
-    def getCustomConfigPath(name):
-        config_file = os.path.join(PathHelper.getConfigPath(), name)
+    def getCustomFileAsset(name):
+        config_file = os.path.join(PathHelper.getAssetsPath(), name)
         return config_file
 
     def getUserConfigJson():
@@ -37,14 +37,23 @@ class PathHelper:
         return config
 
     def getScriptsPath():
-        return PathHelper.__getDirectoryFromParentPath('scripts')
+        return PathHelper.__getDirectoryFromAppsPath('scripts')
 
     def getLogsPath():
-        return PathHelper.__getDirectoryFromParentPath('logs')
+        return PathHelper.__getDirectoryFromAppsPath('logs')
+
+    def getAssetsPath():
+        return PathHelper.__getDirectoryFromAppsPath('assets')
 
     def getCorePath():
-        return PathHelper.__getCurrentDirectoryPath() 
+        return os.path.dirname(os.path.abspath(__file__))
 
+    def __getAppsDirectoryPath():
+        return os.getcwd()
+
+    def __getDirectoryFromAppsPath(folder):
+        return os.path.join(PathHelper.__getAppsDirectoryPath(), folder)
+'''
     def __getCurrentDirectoryPath():
         return os.path.dirname(os.path.abspath(__file__))
     
@@ -53,6 +62,7 @@ class PathHelper:
 
     def __getDirectoryFromParentPath(folder):
         return os.path.join(PathHelper.__getParentDirectoryPath(), folder)
+'''
 
 class Singleton(type):
     _instances = {}
