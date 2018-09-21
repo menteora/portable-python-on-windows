@@ -7,10 +7,8 @@ class MyClass:
         else:
             self.config_name = config_name
 
-    
     def function(self):
-        print("This is a message inside the class." +  self.config_name)
+        print("This is a message inside the class." + self.config_name)
 
-#myobjectx = MyClass()
-
-#print(myobjectx.variable)
+# myobjectx = MyClass()
+# print(myobjectx.variable)
