@@ -22,6 +22,10 @@ class PathHelper:
         config_file = os.path.join(PathHelper.getAssetsPath(), name)
         return config_file
 
+    def getCustomLogFile(name):
+        config_file = os.path.join(PathHelper.getLogsPath(), name)
+        return config_file
+
     def getUserConfigJson():
         user_file = os.path.join(
             PathHelper.getConfigPath(), getpass.getuser() + ".config.json")
