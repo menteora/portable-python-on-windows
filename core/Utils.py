@@ -2,6 +2,7 @@ import os
 import json
 import getpass
 import socket
+import time
 from pathlib import Path
 
 
@@ -22,8 +23,16 @@ class PathHelper:
         config_file = os.path.join(PathHelper.getAssetsPath(), name)
         return config_file
 
+    def getCustomBinFile(relative_directory, name):
+        config_file = os.path.join(PathHelper.getBinPath(), relative_directory, name)
+        return config_file
+
     def getCustomLogFile(name):
         config_file = os.path.join(PathHelper.getLogsPath(), name)
+        return config_file
+
+    def getCustomLogFileTimeStamp(name):
+        config_file = os.path.join(PathHelper.getLogsPath(), time.strftime("%Y%m%d-%H%M%S") + "_" + name)
         return config_file
 
     def getUserConfigJson():
@@ -52,6 +61,9 @@ class PathHelper:
 
     def getAssetsPath():
         return PathHelper.__getDirectoryFromAppsPath('assets')
+
+    def getBinPath():
+        return PathHelper.__getDirectoryFromAppsPath('bin')
 
     def getCorePath():
         return os.path.dirname(os.path.abspath(__file__))
