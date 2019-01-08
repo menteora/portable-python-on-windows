@@ -12,7 +12,7 @@ def import_library(dir, name):
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 
-logger = import_library(fileDir, "logger")
+logger = import_library(fileDir, "Logger")
 
 log = logger.setup('executor', parentDir)
 

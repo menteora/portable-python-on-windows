@@ -7,9 +7,13 @@ from pathlib import Path
 
 
 class PathHelper:
-    def getConfigPath():
-        return PathHelper.__getDirectoryFromAppsPath('configs')
-
+    def getConfigPath(name=''):
+        if name == '':
+            return PathHelper.__getDirectoryFromAppsPath('configs')
+        else:
+            return os.path.join(
+            PathHelper.getConfigPath(), name)
+            
     def getConfigJson(name):
         config_file = os.path.join(
             PathHelper.getConfigPath(), name + ".config.json")
