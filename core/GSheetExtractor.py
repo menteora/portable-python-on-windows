@@ -7,9 +7,6 @@ from DataExtractor import DataExtractor
 from Utils import PathHelper
 
 class GSheetExtractor(DataExtractor):
-    def __init__(self, config={}):
-        self.config_json = super().getConfig(config)
-        self.connect()
 
     def connect(self):
         scopes = self.config_json['authentication']['scopes']
