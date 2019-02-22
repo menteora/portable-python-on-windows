@@ -27,7 +27,7 @@ class GSheetExtractor(DataExtractor):
         self.service = build('sheets', 'v4', http=creds.authorize(Http()))
 
     def execute(self, spreadsheet_id, range_name):
-        self.gsheet = self.service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
+        self.result = self.service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
 
     def toDataframe(self):
         """ Converts Google sheet data to a Pandas DataFrame.
@@ -38,8 +38,8 @@ class GSheetExtractor(DataExtractor):
         or update the code to account for such instances.
 
         """
-        header = self.gsheet.get('values', [])[0]   # Assumes first line is header!
-        values = self.gsheet.get('values', [])[1:]  # Everything else is data.
+        header = self.result.get('values', [])[0]   # Assumes first line is header!
+        values = self.result.get('values', [])[1:]  # Everything else is data.
 
         if not values:
             print('No data found.')
@@ -58,5 +58,5 @@ class GSheetExtractor(DataExtractor):
                     # print(column_data)
                 ds = pd.Series(data=column_data, name=col_name)
                 all_data.append(ds)
-            df = pd.concat(all_data, axis=1)
-            return df
+            self.df = pd.concat(all_data, axis=1)
+            return self.df
