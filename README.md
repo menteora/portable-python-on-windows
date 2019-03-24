@@ -8,3 +8,4 @@
 
 - Download: Windows x86-64 embeddable zip file
 - Uncomment import site under python37._pth
+- Run 1. install pip.bat

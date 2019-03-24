@@ -1,11 +1,29 @@
 import luigi
 import os
-from Utils import PathHelper
+from Utils import PathHelper, Singleton
+import datetime
+
+class LuigiSharedData(metaclass=Singleton):
+    def __init__(self):
+        self.data = {}
+
+    def getData(self):
+        return self.data
+
+    def setData(self, data):
+        self.data.update(data)
 
 class LuigiCore(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget(PathHelper.getCustomLogFile(self.__class__.__name__ + ".csv"))
+        return luigi.LocalTarget(PathHelper.getCustomLogFile(self.__class__.__name__ + '.csv'))
+
+class LuigiOutputTime(luigi.Task):
+
+    def output(self):
+        luigidata = LuigiSharedData().getData()
+        date = luigidata['date']
+        return luigi.LocalTarget(PathHelper.getCustomLogFile('{:%Y-%m-%d %H%M%S} '.format(date) + self.__class__.__name__ + '.csv'))
 
 class LuigiTaskFreshOutput(LuigiCore):
 

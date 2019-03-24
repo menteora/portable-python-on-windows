@@ -5,11 +5,11 @@ class CsvTransformer():
 
     def __init__(self, file_path):
         if isinstance(file_path, list):
-            dfs = [pd.read_csv(f, encoding='utf-8')
+            dfs = [pd.read_csv(f, encoding='utf-8', quotechar='"')
                 for f in file_path]
             self.df = pd.concat(dfs).sort_index()
         else:
-            self.df = pd.read_csv(file_path, encoding='utf-8')
+            self.df = pd.read_csv(file_path, encoding='utf-8', quotechar='"')
 
     def filterColumn(self, columns = []):
         self.df = self.df[columns]

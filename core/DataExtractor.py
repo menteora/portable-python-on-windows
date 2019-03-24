@@ -26,7 +26,7 @@ class DataExtractor(ABC):
     def toDataframe(self):
         pass
 
-    def toCsv(self, path, df=None, write_mode='w', header=True, sep=',', index=None, encoding='utf-8'):
+    def toCsv(self, path, df=None, write_mode='w', header=True, sep=',', quotechar='"', index=None, encoding='utf-8'):
         if df is None: 
             df = self.toDataframe()
-        df.to_csv(path, mode=write_mode, header=header, sep=sep, encoding=encoding, index=index)
+        df.to_csv(path, mode=write_mode, header=header, sep=sep, encoding=encoding, index=index, quotechar=quotechar)
